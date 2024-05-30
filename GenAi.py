@@ -13,14 +13,14 @@ def extract_sql_query(template):
     Answer: """
     )
 
-    llm_model = ChatGroq(model="llama3-70b-8192", api_key='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')
+    llm_model = ChatGroq(model="llama3-70b-8192", api_key='YOur groq api key')
     llm = LLMChain(llm=llm_model, prompt=answer_prompt)
     ans = llm(inputs={"template": template})
     print(ans["text"])
     return ans["text"]
 
 def Gen_Ai(questions):
-    llm = ChatGroq(model="llama3-70b-8192", api_key='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')
+    llm = ChatGroq(model="llama3-70b-8192", api_key='YOur groq api key')
     db = SQLDatabase.from_uri("sqlite:///F:\works\A-important\A-neurals\QueryGen\data\DataBase.db")
     chain = create_sql_query_chain(llm, db)
     sql_query = chain.invoke({'question': questions})
@@ -37,7 +37,7 @@ def Gen_Ai(questions):
     Answer: """
     )
 
-    llm_model = ChatGroq(model="llama3-70b-8192", api_key='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')
+    llm_model = ChatGroq(model="llama3-70b-8192", api_key='YOur groq api key')
     llm = LLMChain(llm=llm_model, prompt=answer_prompt)
     ans = llm(inputs={"question": questions, "query": sql_query, "result": result})
     return ans["text"], final
