@@ -1,7 +1,7 @@
 # QueryGen
 
 QueryGen is a Streamlit application that allows you to generate SQL queries based on natural language prompts and CSV file inputs. It uses LangChain's SQL query generation capabilities and the ChatGroq language model to interpret user prompts and generate optimized SQL queries tailored to the uploaded CSV data.
-
+Demo : [Link](https://www.linkedin.com/posts/pragateesh_hello-everyone-im-excited-to-share-that-activity-7201981392715472897-NWrC/?utm_source=share&utm_medium=member_desktop)
 ## Features
 
 - Upload multiple CSV files
