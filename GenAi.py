@@ -1,3 +1,4 @@
+import os
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_groq import ChatGroq
 from langchain.prompts import PromptTemplate
@@ -13,15 +14,21 @@ def extract_sql_query(template):
     Answer: """
     )
 
-    llm_model = ChatGroq(model="llama3-70b-8192", api_key='YOur groq api key')
+    llm_model = ChatGroq(model="llama3-70b-8192", api_key='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')
     llm = LLMChain(llm=llm_model, prompt=answer_prompt)
     ans = llm(inputs={"template": template})
     print(ans["text"])
     return ans["text"]
 
 def Gen_Ai(questions):
-    llm = ChatGroq(model="llama3-70b-8192", api_key='YOur groq api key')
-    db = SQLDatabase.from_uri("sqlite:///F:\works\A-important\A-neurals\QueryGen\data\DataBase.db")
+    llm = ChatGroq(model="llama3-70b-8192", api_key='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')
+    
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(current_dir, "data")
+    database_path = os.path.join(data_dir, 'DataBase.db')
+    db_uri = f"sqlite:///{database_path}"
+    
+    db = SQLDatabase.from_uri(db_uri)
     chain = create_sql_query_chain(llm, db)
     sql_query = chain.invoke({'question': questions})
     final = extract_sql_query(sql_query)
@@ -37,7 +44,7 @@ def Gen_Ai(questions):
     Answer: """
     )
 
-    llm_model = ChatGroq(model="llama3-70b-8192", api_key='YOur groq api key')
+    llm_model = ChatGroq(model="llama3-70b-8192", api_key='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')
     llm = LLMChain(llm=llm_model, prompt=answer_prompt)
     ans = llm(inputs={"question": questions, "query": sql_query, "result": result})
     return ans["text"], final
